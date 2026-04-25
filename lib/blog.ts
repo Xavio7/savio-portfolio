@@ -4,9 +4,14 @@ import matter from "gray-matter";
 import { notFound } from "next/navigation";
 
 const blogDir = path.join(process.cwd(), "content/blog");
+type Post = {
+  title: string;
+  date: string;
+  content: string;
+};
 
 // LIST ALL POSTS (for /blog page)
-export function getAllPosts() {
+export function getAllPosts(): Omit<Post, "content">[] {
   const files = fs.readdirSync(blogDir);
 
   return files
@@ -29,7 +34,7 @@ export function getAllPosts() {
 }
 
 // GET SINGLE POST (for /blog/[slug])
-export function getPostBySlug(slug: string) {
+export function getPostBySlug(slug: string): Post {
   try {
     const filePath = path.join(blogDir, `${slug}.mdx`);
     const fileContent = fs.readFileSync(filePath, "utf-8");
@@ -38,7 +43,8 @@ export function getPostBySlug(slug: string) {
 
     return {
       content,
-      ...data,
+      title: data.title,
+      date: data.date,
     };
   } catch {
     notFound();
