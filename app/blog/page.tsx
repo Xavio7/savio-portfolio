@@ -10,6 +10,7 @@ export default function BlogPage() {
 
       <ul className="mt-6 space-y-4">
         {posts.map((post) => (
+          console.log("Post:", post),
           <li key={post.slug}>
             <Link href={`/blog/${post.slug}`}>
               <h2 className="text-lg font-medium">{post.title}</h2>

@@ -2,11 +2,20 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-export default function BlogPost({ params }: { params: { slug: string } }) {
+export default async function BlogPost({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  // ✅ unwrap params (THIS is the fix)
+  const { slug } = await params;
+
+  console.log("Slug:", slug);
+
   const filePath = path.join(
     process.cwd(),
     "content/blog",
-    `${params.slug}.mdx`
+    `${slug}.mdx`
   );
 
   const fileContent = fs.readFileSync(filePath, "utf-8");
