@@ -10,8 +10,13 @@ type Post = {
   content: string;
 };
 
+type PostMeta = {
+  title: string;
+  date: string;
+  slug: string;
+};
 // LIST ALL POSTS (for /blog page)
-export function getAllPosts(): Omit<Post, "content">[] {
+export function getAllPosts(): PostMeta[] {
   const files = fs.readdirSync(blogDir);
 
   return files
