@@ -2,8 +2,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 
 export const metadata = {
-  title: "Savio Engineering",
-  description: "Backend Engineer | Systems | GenAI",
+  title: "Savio Bajpai",
+  description: "Engineering | Systems | GenAI | Google Cloud",
 };
 
 export default function RootLayout({
@@ -14,6 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-white text-gray-900">
+      {/* <body className="bg-gray-50 text-gray-900"> */}
         <Navbar />
         {children}
       </body>
